@@ -1,6 +1,6 @@
 #include<cstdio>
 #include<cstdlib>
-const int MAX_N = 1000;
+int arr[1000003];
 int max(int a, int b)
 {
 	return (a>b ? a : b);
@@ -11,20 +11,24 @@ int min(int a, int b)
 }
 int main()
 {
-	int l, n;
-	int arr[MAX_N];
-	scanf("%d %d", &l, &n);
-	for (int i = 0; i<n; i++)
+	int count;
+	scanf("%d", &count);
+	for (int t = 0; t<count; t++)
 	{
-		scanf("%d", &arr[i]);
+		int l, n;
+		scanf("%d %d", &l, &n);
+		for (int i = 0; i<n; i++)
+		{
+			scanf("%d", &arr[i]);
+		}
+		int minT = 0;
+		int maxT = 0;
+		for (int i = 0; i<n; i++)
+		{
+			minT = max(minT, min(arr[i], l - arr[i]));
+			maxT = max(maxT, max(arr[i], l - arr[i]));
+		}
+		printf("%d %d\n", minT, maxT);
 	}
-	int minT = 0;
-	int maxT = 0;
-	for (int i = 0; i<n; i++)
-	{
-		minT = max(minT, min(arr[i], l - arr[i]));
-		maxT = max(maxT, max(arr[i], l - arr[i]));
-	}
-	printf("%d\n%d", minT, maxT);
 	return 0;
 }
